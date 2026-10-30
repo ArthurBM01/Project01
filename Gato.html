@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gatinho seguidor</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      color: #2923e4;
+    }
+    #gato {
+      position: fixed;
+      font-size: 48px;
+      pointer-events: none;          /* o gato não atrapalha cliques */
+      transform: translate(-50%, -50%); /* centraliza no ponto */
+    }
+  </style>
+</head>
+<body> 
+
+</body>   <h1>O gato persegue o mouse...</h1>
+  <div id="gato">🐱</div>
+
+  <script>
+    const gato = document.getElementById('gato');
+
+    let mouseX = 0, mouseY = 0;   // onde o mouse está
+    let gatoX = 0, gatoY = 0;     // onde o gato está
+
+    // 1. Guarda a posição do mouse
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // 2. A cada quadro, aproxima o gato do mouse e o desenha
+    function animar() {
+      gatoX += (mouseX - gatoX) * 0.1;
+      gatoY += (mouseY - gatoY) * 0.1;
+
+      gato.style.left = gatoX + 'px';
+      gato.style.top = gatoY + 'px';
+
+      requestAnimationFrame(animar);
+    }
+
+    animar();
+  </script>
+</body>
+</html>
